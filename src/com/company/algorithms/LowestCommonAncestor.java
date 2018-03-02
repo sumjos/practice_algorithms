@@ -31,7 +31,16 @@ class Node {
     }
 
     static Node getLca(Node node, Node parent, int v1, int v2) {
-        if (node == null) {
+        if (node.data > v1 && node.data > v2) {
+            return Node.getLca(node.left, node, v1, v2);
+        } else if (node.data < v1 && node.data < v2) {
+            return Node.getLca(node.right, node, v1, v2);
+        } else if (node.data == v1 || node.data == v2){
+            return node;
+        } else {
+            return null;
+        }
+        /*if (node == null) {
             return parent;
         } else if (node.data > v1 && node.data > v2) {
             return Node.getLca(node.left, node, v1, v2);
@@ -41,6 +50,6 @@ class Node {
             return node;
         } else {
             return parent;
-        }
+        }*/
     }
 }
